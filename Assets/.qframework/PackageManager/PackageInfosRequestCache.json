@@ -2792,7 +2792,7 @@
       "Type": 0,
       "AccessRight": 1,
       "VersionNumber": 502,
-      "Installed": true
+      "Installed": false
     },
     {
       "Name": "PackageKit",
