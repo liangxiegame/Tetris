@@ -38,6 +38,7 @@ namespace QFramework
         [GenerateMethod, AsOverride]
         protected void OnOpen(IUIData uiData = null)
         {
+            Ctx._("mData = uiData as {0} ?? mData", Ctx.Data.PanelName + "Data");
         }
 
         [GenerateMethod, AsOverride]

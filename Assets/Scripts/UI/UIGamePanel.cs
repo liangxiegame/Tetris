@@ -21,64 +21,49 @@ namespace QFramework.Tetris
     using UnityEngine.UI;
     
     
-    public class UIHomePanelData : QFramework.UIPanelData
+    public class UIGamePanelData : QFramework.UIPanelData
     {
-        public bool ShowRestartBtn = false;
     }
     
-    public partial class UIHomePanel : QFramework.UIPanel
+    public partial class UIGamePanel : QFramework.UIPanel
     {
         
         protected override void ProcessMsg(int eventId, QFramework.QMsg msg)
         {
             throw new System.NotImplementedException ();
         }
-        
+
         protected override void OnInit(QFramework.IUIData uiData)
         {
-            mData = uiData as UIHomePanelData ?? new UIHomePanelData();
+            mData = uiData as UIGamePanelData ?? new UIGamePanelData();
             // please add init code here
-
-            BtnStart.OnClickAsObservable().Subscribe(_ =>
+            BtnPause.OnClickAsObservable().Subscribe(_ =>
             {
                 StartHide();
-                UIMgr.OpenPanel<UIGamePanel>();
+                UIMgr.OpenPanel<UIHomePanel>(new UIHomePanelData()
+                {
+                    ShowRestartBtn = true
+                });
             });
         }
-        
+
         protected override void OnOpen(QFramework.IUIData uiData)
-        {
-            mData = uiData as UIHomePanelData ?? mData;
-            
-            if (mData.ShowRestartBtn)
-            {
-                BtnRestart.Show();
-            }
+        {               
+
         }
         
         protected override void OnShow()
         {
-            LogoName.Show();
-            LogoName.rectTransform.DOAnchorPosY(-193, 0.5f);
-
-            MenuUI.Show();
-            MenuUI.DOAnchorPosY(60, 0.5f);
-            
-            CameraCtrl.Instance.ZoomOut();
+            GameUI.Show();
+            GameUI.DOAnchorPosY(-50f, 0.5f);
+            CameraCtrl.Instance.ZoomIn();
+            GameCtrl.Instance.StartGame();
         }
-
 
         public void StartHide()
         {
-            LogoName.rectTransform.DOAnchorPosY(145.6f, 0.5f).OnComplete(() =>
-            {
-                LogoName.Hide(); 
-            });
-
-            MenuUI.DOAnchorPosY(-84.91797f, 0.5f).OnComplete(() =>
-            {
-                MenuUI.Hide(); 
-            });
+            GameUI.DOAnchorPosY(314f, 0.5f).OnComplete(() => { GameUI.Hide(); });
+            GameCtrl.Instance.PauseGame();
         }
         
         protected override void OnHide()

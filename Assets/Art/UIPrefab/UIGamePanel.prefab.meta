@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 7707f9732a019914ab2922be55c7d183
-timeCreated: 1555144891
+guid: 4e478f0f33219de409385bbf387fe2b6
+timeCreated: 1555219060
 licenseType: Free
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 100100000
   userData: 
-  assetBundleName: uihomepanel_prefab
+  assetBundleName: uigamepanel_prefab
   assetBundleVariant: 

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using QFramework;
+using QFramework.Tetris;
 using UnityEngine;
 
 public class Ctrl : MonoBehaviour {
@@ -10,6 +11,10 @@ public class Ctrl : MonoBehaviour {
 	private void Awake()
 	{
 		MakeFSM();
+		
+		ResMgr.Init();
+
+		UIMgr.OpenPanel<UIHomePanel>();
 	}
 
 	private FSMSystem mFSM;
